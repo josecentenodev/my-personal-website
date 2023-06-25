@@ -1,6 +1,7 @@
+import NavBar from '@/components/NavBar'
 import '../globals.css'
-import Link from 'next/link'
 import { getPages } from '@/sanity/sanity-utils'
+import Footer from '@/components/Footer'
 
 export const metadata = {
     title: 'Jose Centeno Dev Portfolio',
@@ -16,33 +17,13 @@ export default async function RootLayout({
 }: {
     children: React.ReactNode
 }) {
-    // get all of my pages
     const pages = await getPages()
     return (
         <html lang='en'>
-            <body className='max-w-3xl mx-auto'>
-                <header className='flex items-center justify-between py-10'>
-                    <Link
-                        href='/'
-                        className='bg-gradient-to-r from-blue-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent text-lg font-bold'
-                    >
-                        🏠
-                    </Link>
-
-                    <div className='flex items-center gap-5 text-gray-600'>
-                        {pages &&
-                            pages.map((page) => (
-                                <Link
-                                    key={page._id}
-                                    href={`/${page.slug}`}
-                                    className='hover:underline'
-                                >
-                                    {page.title}
-                                </Link>
-                            ))}
-                    </div>
-                </header>
+            <body className='max-w-3xl mx-auto px-2 lg:px-0 text-center lg:text-left'>
+                <NavBar pages={pages} />
                 {children}
+                <Footer />
             </body>
         </html>
     )
