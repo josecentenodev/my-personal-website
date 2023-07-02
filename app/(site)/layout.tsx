@@ -1,5 +1,6 @@
 import NavBar from '@/components/NavBar'
 import '../globals.css'
+import 'react-toastify/dist/ReactToastify.css'
 import { getPages } from '@/sanity/sanity-utils'
 import Footer from '@/components/Footer'
 

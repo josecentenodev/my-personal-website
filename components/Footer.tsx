@@ -31,6 +31,17 @@ export default function Footer() {
                             height={25}
                         />
                     </Link>
+                    <Link
+                        href='https://github.com/josecentenodev/'
+                        target='_blank'
+                    >
+                        <Image
+                            src='/assets/icons/github.svg'
+                            alt='Instagram logo'
+                            width={25}
+                            height={25}
+                        />
+                    </Link>
                 </div>
             </div>
         </footer>

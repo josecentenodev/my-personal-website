@@ -1,5 +1,7 @@
 'use client'
+import { sendContactForm } from '@/lib/sendMail'
 import { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 
 interface FormData {
     name: string
@@ -14,6 +16,10 @@ const ContactForm = () => {
         message: '',
     })
 
+    const [errorMessage, setErrorMessage] = useState(null)
+
+    const [isDisabled, setIsDisabled] = useState(false)
+
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
@@ -23,7 +29,18 @@ const ContactForm = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         // Perform form submission logic here
-        console.log(formData) // Example: Logging form data to the console
+        // Example: Logging form data to the console
+        try {
+            await sendContactForm(formData)
+            setErrorMessage(null)
+            toast.success(
+                'Message Sent. Thank you for texting me, I will text you back soon! 🧔🏻',
+                { autoClose: 5000 }
+            )
+        } catch (error: any) {
+            setErrorMessage(error.message)
+            toast.error(errorMessage, { autoClose: 5000 })
+        }
         // Reset form after submission
         setFormData({
             name: '',
@@ -75,7 +92,7 @@ const ContactForm = () => {
                     />
                 </div>
             </div>
-            <div>
+            <div className='flex flex-col'>
                 <label
                     htmlFor='message'
                     className='text-gray-700 px-4'
@@ -93,13 +110,15 @@ const ContactForm = () => {
                     cols={40}
                     required
                 ></textarea>
+                <button
+                    type='submit'
+                    className='bg-cyan-500 rounded-lg text-gray-50 font-bold py-3 px-4 mt-4 whitespace-nowrap hover:bg-pink-500 hover:text-pink-100 transition w-28 self-end'
+                    disabled={isDisabled}
+                >
+                    Send
+                </button>
             </div>
-            <button
-                type='submit'
-                className='bg-cyan-500 rounded-lg text-gray-50 font-bold py-3 px-4 mt-4 whitespace-nowrap hover:bg-pink-500 hover:text-pink-100 transition'
-            >
-                Send
-            </button>
+            <ToastContainer draggablePercent={60} />
         </form>
     )
 }
