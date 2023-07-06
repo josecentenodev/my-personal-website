@@ -4,12 +4,13 @@ import Image from 'next/image'
 export default function Footer() {
     return (
         <footer className='flex justify-center items-start pt-10 py-5 text-gray-400'>
-            <div className='flex flex-col items-center p-2'>
-                <p>🧔🏻Jose Antonio Centeno</p>
-                <p>📍Cordoba, Argentina</p>
-                <p>📱+543517382518</p>
-                <div className='flex items-center justify-center'>
+            <div className='flex flex-col items-center pt-2'>
+                <p className='p-1'>🧔🏻Jose Antonio Centeno</p>
+                <p className='p-1'>📍Cordoba, Argentina</p>
+                <p className='p-1'>📱+543517382518</p>
+                <div className='pt-1 flex items-center justify-center'>
                     <Link
+                        className='mx-1'
                         href='https://www.instagram.com/citodesu/'
                         target='_blank'
                     >
@@ -21,6 +22,7 @@ export default function Footer() {
                         />
                     </Link>
                     <Link
+                        className='mx-1'
                         href='https://www.linkedin.com/in/josecentenodev/'
                         target='_blank'
                     >
@@ -32,6 +34,7 @@ export default function Footer() {
                         />
                     </Link>
                     <Link
+                        className='mx-1'
                         href='https://github.com/josecentenodev/'
                         target='_blank'
                     >

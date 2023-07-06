@@ -2,6 +2,8 @@
 import { sendContactForm } from '@/lib/sendMail'
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
+import { setTimeout } from 'timers'
+import { Button } from './ui/button'
 
 interface FormData {
     name: string
@@ -28,6 +30,7 @@ const ContactForm = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        setIsDisabled(true)
         // Perform form submission logic here
         // Example: Logging form data to the console
         try {
@@ -37,6 +40,7 @@ const ContactForm = () => {
                 'Message Sent. Thank you for texting me, I will text you back soon! 🧔🏻',
                 { autoClose: 5000 }
             )
+            setTimeout(() => setIsDisabled(false), 5000)
         } catch (error: any) {
             setErrorMessage(error.message)
             toast.error(errorMessage, { autoClose: 5000 })
@@ -110,13 +114,13 @@ const ContactForm = () => {
                     cols={40}
                     required
                 ></textarea>
-                <button
+                <Button
                     type='submit'
-                    className='bg-cyan-500 rounded-lg text-gray-50 font-bold py-3 px-4 mt-4 whitespace-nowrap hover:bg-pink-500 hover:text-pink-100 transition w-28 self-end'
+                    className='bg-pink-500 rounded-lg text-gray-50 font-bold py-3 px-4 mt-4 whitespace-nowrap hover:bg-cyan-500 hover:text-pink-100 transition w-28 self-end disabled:bg-gray-500'
                     disabled={isDisabled}
                 >
-                    Send
-                </button>
+                    {isDisabled ? '...' : 'Send'}
+                </Button>
             </div>
             <ToastContainer draggablePercent={60} />
         </form>

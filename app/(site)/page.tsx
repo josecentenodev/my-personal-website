@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { getProjects } from '@/sanity/sanity-utils'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,7 +7,7 @@ export default async function Home() {
     const projects = await getProjects()
     return (
         <main className='py-10'>
-            <h1 className='text-7xl font-extrabold'>
+            <h1 className='text-7xl font-extrabold inline'>
                 Hello I&apos;m{' '}
                 <span className='bg-gradient-to-r from-blue-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent'>
                     Jose!

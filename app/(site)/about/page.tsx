@@ -1,7 +1,7 @@
 export default function Page() {
     return (
         <section className='py-10'>
-            <header className='flex items-center justify-between'>
+            <header className='flex items-center'>
                 <h1 className='bg-gradient-to-r from-blue-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent text-5xl font-extrabold drop-shadow'>
                     About
                 </h1>
